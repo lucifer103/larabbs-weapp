@@ -44,7 +44,7 @@
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#fff',
         navigationBarTitleText: 'LaraBBS',
-        navigationBarTxtStyle: 'black'
+        navigationBarTextStyle: 'black'
       },
       tabBar: {
         list: [{
@@ -66,10 +66,13 @@
     constructor () {
       super()
       this.use('requestfix')
+      this.use('promisify')
     }
 
     onLaunch() {
-
+      wepy.login().then(res => {
+        console.log('login：', res)
+      })
     }
   }
 </script>
