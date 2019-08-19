@@ -20,7 +20,7 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input {{ errors.phone ? 'weui-cell_warn' : ''}}">
             <view class="weui-cell__bd">
-              <input disabled="{{ phoneDisabled }}" class="weui-input" type="number" placeholder="请输入手机号" @input="bindPhoneInput">
+              <input disabled="{{ phoneDisabled }}" class="weui-input" type="number" placeholder="请输入手机号" @input="bindPhoneInput" />
             </view>
             <view class="weui-cell__ft">
               <icon wx:if="{{ errors.phone }}" type="warn" size="23" color="#E64340"></icon>
@@ -63,7 +63,7 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input {{ errors.password ? 'weui-cell_warn' : ''}}">
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入密码" name="password" type="password"/>
+              <input class="weui-input" placeholder="请输入密码" name="password" type="password" />
             </view>
             <view class="weui-cell__ft">
               <icon wx:if="{{ errors.password }}" type="warn" size="23" color="#E64340"></icon>
