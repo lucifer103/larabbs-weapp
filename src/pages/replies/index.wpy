@@ -38,8 +38,7 @@
 </template>
 <script>
   import wepy from 'wepy'
-  import util from '@/utils/util'
-  import api from '@/utils/api'
+  import replyMixin from '@/mixins/replyMixin'
 
   export default class replyIndex extends wepy.page {
     config = {
@@ -48,61 +47,16 @@
       // 页面标题
       navigationBarTitleText: '回复列表'
     }
+
     data = {
-      // 回复数据
-      replies: [],
-      // 是否有更多数据
-      noMoreData: false,
-      // 是否在加载中
-      isLoading: false,
-      // 当前页数
-      page: 1,
-      // 话题 id
-      topicId: 0
+      requestData: {}
     }
-    // 获取话题回复
-    async getReplies(reset = false) {
-      try {
-        // 请求话题回复接口
-        let repliesResponse = await api.request({
-          url: 'topics/' + this.topicId + '/replies',
-          data: {
-            page: this.page,
-            include: 'user'
-          }
-        })
 
-        if (repliesResponse.statusCode === 200) {
-          let replies = repliesResponse.data.data
-
-          // 格式化回复创建时间
-          replies.forEach(function (reply) {
-            reply.created_at_diff = util.diffForHumans(reply.created_at)
-          })
-          // 如果 reset 不为 true 则合并 this.replies；否则直接覆盖
-          this.replies= reset ? replies : this.replies.concat(replies)
-
-          let pagination = repliesResponse.data.meta.pagination
-
-          // 根据分页数据判断是否有更多数据
-          if (pagination.current_page === pagination.total_pages) {
-            this.noMoreData = true
-          }
-          this.$apply()
-        }
-
-        return repliesResponse
-      } catch (err) {
-        wepy.showModal({
-          title: '提示',
-          content: '服务器错误，请联系管理员'
-        })
-      }
-    }
+    mixins = [replyMixin]
 
     async onLoad(options) {
       // 获取 URL 参数中的 话题 id
-      this.topicId = options.topic_id
+      this.requestData.url = 'topics/' + options.topic_id + '/replies'
       this.getReplies()
     }
 
