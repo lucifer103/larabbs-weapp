@@ -105,7 +105,7 @@
         // 标记消息为已读，不显示 loading 框
         let markResponse = api.authRequest({
           url: 'user/read/notifications',
-          method: 'PUT',
+          method: 'PUT'
         }, false)
 
         if (markResponse.statusCode === 204) {

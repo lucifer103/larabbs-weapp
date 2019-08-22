@@ -60,7 +60,7 @@
       // 有没有更多数据
       noMoreData: false,
       // 是否在加载中
-      isLoading: false,
+      isLoading: false
     }
     props = {
       // 父页面传入，请求参数
