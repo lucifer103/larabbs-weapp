@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 var prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
@@ -45,7 +45,7 @@ module.exports = {
       filter: /\.js$/,
       config: {
         find: /__BASE_URL__/g,
-        replace: prod ? "'https://weapp.laravel-china.org/api'" : "'http://larabbs.test/api"
+        replace: prod ? "'https://larabbs.strive.net.cn/api'" : "'http://larabbs.test/api'"
       }
     }
   },
@@ -81,7 +81,7 @@ if (prod) {
       filter: /\.js$/,
       config: {
         find: /__BASE_URL__/g,
-        replace: prod ? "'https://weapp.laravel-china.org/api'" : "'http://larabbs.test/api'"
+        replace: prod ? "'https://larabbs.strive.net.cn/api'" : "'http://larabbs.test/api'"
       }
     }
   }
